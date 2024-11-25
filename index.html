@@ -238,11 +238,25 @@
           one with the base model <i>W<sub>0</sub></i> and combined prompt <i>x</i>, and one each with the content and style LoRA and their respective prompts.
           It guides the two LoRAs to learn distinct concepts, and especially helps in achieving better destylization of the content.
         </p>
+        <p style="font-size: 120%;">
+          We introduce column masks for each LoRA. These column masks dynamically control the contribution of each column in the learned LoRA weights.
+          Essentially, they allow the model to selectively activate or suppress specific columns within each LoRA, 
+          promoting orthogonality and reducing interference.
+        </p>
+        <p style="font-size: 120%;">
+          To promote compatibility between the subject and style LoRAs, we also leverage the insight from ZipLoRA 
+          that highly aligned LoRA columns merge poorly, and apply orthogonal loss L<sub>&perp;</sub> between each column masks.
+        </p>
+        <p style="font-size: 120%;">
+          we take advantage of the analysis by the authors of B-LoRA that certain blocks in the SDXL U-Net are more responsible 
+          for content or style. For blocks known as style-sensitive, we release the column sparsity constraint for the style LoRA,i.e.,
+          all the columns are fully trained. The same strategy is applied to the content-LoRA.
+        </p>
         <img src="./static/images/overview.png" style="width:100%;">
       </div>
     </div>
       <!-- Visual Effects. -->
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered">
       <div class="column">
         <div class="content">
           <h2 class="title is-4">Column-level Separation</h2>
@@ -261,7 +275,7 @@
       <!--/ Visual Effects. -->
 
       <!-- Matting. -->
-      <div class="column">
+      <!-- <div class="column">
         <h2 class="title is-4">Block-level Separation</h2>
         <div class="columns is-centered">
           <div class="column content">
@@ -274,10 +288,10 @@
           </div>
 
         </div>
-      </div>
+      </div> -->
       <!-- </div> -->
       <!--/ Matting. -->
-    </div>
+    </div> -->
 
     <!-- Animation. -->
     <div class="columns is-centered">
