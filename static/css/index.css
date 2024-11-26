@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-    max-width: 1300px;
+    max-width: 1000px;
 }
 
 .dnerf {
@@ -115,18 +115,22 @@ body {
 }
 
 .results-carousel {
-  overflow: hidden;
+  display: flex; /* Use flexbox to align items horizontally */
+  overflow: hidden; /* Hide overflow */
+  scroll-snap-type: x mandatory; /* Snap to each item */
 }
-
 .results-carousel .item {
-  margin: 5px;
+  flex: 0 0 100%; /* Make each item take up 100% of the carousel width */
+  max-width: 100%; /* Prevent items from exceeding the width */
+  margin: 0 auto; /* Center the content */
   overflow: hidden;
   border: 1px solid #bbb;
   border-radius: 10px;
-  padding: 0;
-  font-size: 0;
 }
-
+.results-carousel img {
+  width: 120%; /* Make the image responsive */
+  height: auto;
+}
 .results-carousel video {
   margin: 0;
 }
