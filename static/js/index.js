@@ -31,7 +31,7 @@ $(document).ready(function() {
 
     var options = {
 			slidesToScroll: 1,
-			slidesToShow: 3,
+			slidesToShow: 1,
 			loop: true,
 			infinite: true,
 			autoplay: false,
@@ -50,13 +50,23 @@ $(document).ready(function() {
     }
 
     // Access to bulmaCarousel instance of an element
-    var element = document.querySelector('#my-element');
+    var element = document.querySelector('#results-carousel');
     if (element && element.bulmaCarousel) {
     	// bulmaCarousel instance is available as element.bulmaCarousel
-    	element.bulmaCarousel.on('before-show', function(state) {
-    		console.log(state);
-    	});
+    	element.bulmaCarousel.updateOptions({ slidesToShow: 1 });
     }
+    var element = document.querySelector('#results-carousel-suppl');
+    if (element && element.bulmaCarousel) {
+    	// bulmaCarousel instance is available as element.bulmaCarousel
+    	element.bulmaCarousel.updateOptions({ slidesToShow: 1 });
+    }
+    // var element = document.querySelector('#my-element');
+    // if (element && element.bulmaCarousel) {
+    // 	// bulmaCarousel instance is available as element.bulmaCarousel
+    // 	element.bulmaCarousel.on('before-show', function(state) {
+    // 		console.log(state);
+    // 	});
+    // }
 
     /*var player = document.getElementById('interpolation-video');
     player.addEventListener('loadedmetadata', function() {
