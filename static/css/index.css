@@ -1,165 +1,488 @@
-body {
-  font-family: 'Noto Sans', sans-serif;
-}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="UnZipLoRA: decompose an image into constituent style and subject.">
+  <meta name="keywords" content="Unziplora">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UnZipLoRA</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/android-chrome-192x192.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
 
 
-.footer .icon-link {
-    font-size: 25px;
-    color: #000;
-}
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">UnZipLoRA: Separating Content and Style from a Single Image</h1>
+          <!-- * Auther list with multiple institutions -->
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://ruachang.github.io">Chang Liu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://virajshah.com/">Viraj Shah</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://cuiaiyu.github.io">Aiyu Cui</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://slazebni.cs.illinois.edu/">Svetlana Lazebnik</a><sup>1</sup>,
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>UIUC<sup>2</sup>Google Research,</span>
+          </div> 
+          <!-- * Auther list from same institution -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://ruachang.github.io">Chang Liu</a></span>,
+            <span class="author-block">
+              <a href="https://virajshah.com/">Viraj Shah</a></span>,
+            <span class="author-block">
+              <a href="https://cuiaiyu.github.io">Aiyu Cui</a></span>,
+            <span class="author-block">
+              <a href="https://slazebni.cs.illinois.edu/">Svetlana Lazebnik</a></span>
+          </div>
 
-.link-block a {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">UIUC</span>
+          </div>
 
-.container {
-    max-width: 1000px;
-}
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block">Arxiv 11/2024</span>
+          </div> -->
 
-.dnerf {
-  font-variant: small-caps;
-}
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+<!--               <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming Soon!)</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+<!--               <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png" class="teaser-image" style="width:120%;" alt="Teaser Image">
+      <h2 class="subtitle has-text-centered" style="font-size: 150%; font-weight: bold; line-height: 1.2;">
+        <!-- <br> -->
+        <em> <span class="dnerf">UnZipLoRA</span> decomposes any image into its content and style! </em>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p style="font-size: 120%;">
+            This paper introduces UnZipLoRA, a method for decomposing an image into its constituent subject and style, 
+            represented as two distinct LoRAs (Low-Rank Adaptations). Unlike existing personalization techniques that focus on either subject or style in isolation, 
+            or require separate training sets for each, UnZipLoRA disentangles these elements from a single image by training both the LoRAs simultaneously. 
+            UnZipLoRA ensures that the resulting LoRAs are compatible, i.e., they can be seamlessly combined using direct addition. 
+            UnZipLoRA enables independent manipulation and recontextualization of subject and style, including generating variations of each, 
+            applying the extracted style to new subjects, and recombining them to reconstruct the original image or create novel variations. 
+            To address the challenge of subject and style entanglement during training, 
+            UnZipLoRA employs a novel prompt separation technique, 
+            as well as column and block separation strategies to accurately preserve the characteristics of subject and style, 
+            and ensure compatibility between the learned LoRAs. 
+            Evaluation with human studies and automatic metrics demonstrates UnZipLoRA's effectiveness compared to other recent state-of-the-art methods, 
+            including DreamBooth-LoRA, Inspiration Tree, and B-LoRA.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Approach</h2>
+        <div class="content has-text-justified">
+          <p style="font-size: 120%;">
+            <span class="dnerf">UnZipLoRA</span> decouples content and style from single input image by learning
+            two distinct LoRAs simultaneously. It relies on three key components to ensure accurate disentanglement: 
+            <b>prompt-level separation</b>, <b>column-level separation</b>, and <b>block-level separation</b>.
+          </p>
+          <br>
+          <img src="./static/images/overview.png" style="width:100%;">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Approach</h2>
+        <p style="font-size: 120%;">
+          <span class="dnerf">UnZipLoRA</span> decouples content and style from single input image by learning
+          two distinct LoRAs simultaneously. It relies on three key components to ensure accurate disentanglement: 
+          <b>prompt-level separation</b>, <b>column-level separation</b>, and <b>block-level separation</b>.
+        </p>
+        <p style="font-size: 120%;">
+          We propose to calculate cross attention output using three separate prompts: 
+          one with the base model <i>W<sub>0</sub></i> and combined prompt <i>x</i>, and one each with the content and style LoRA and their respective prompts.
+          It guides the two LoRAs to learn distinct concepts, and especially helps in achieving better destylization of the content.
+        </p>
+        <p style="font-size: 120%;">
+          We introduce column masks for each LoRA. These column masks dynamically control the contribution of each column in the learned LoRA weights.
+          Essentially, they allow the model to selectively activate or suppress specific columns within each LoRA, 
+          promoting orthogonality and reducing interference.
+        </p>
+        <p style="font-size: 120%;">
+          To promote compatibility between the subject and style LoRAs, we also leverage the insight from ZipLoRA 
+          that highly aligned LoRA columns merge poorly, and apply orthogonal loss L<sub>&perp;</sub> between each column masks.
+        </p>
+        <p style="font-size: 120%;">
+          we take advantage of the analysis by the authors of B-LoRA that certain blocks in the SDXL U-Net are more responsible 
+          for content or style. For blocks known as style-sensitive, we release the column sparsity constraint for the style LoRA,i.e.,
+          all the columns are fully trained. The same strategy is applied to the content-LoRA.
+        </p>
+        <img src="./static/images/overview.png" style="width:100%;">
+      </div>
+    </div> -->
+      <!-- Visual Effects. -->
+    <!-- <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Column-level Separation</h2>
+          <p style="font-size: 120%;">
+            We introduce column masks for each LoRA. These column masks dynamically control the contribution of each column in the learned LoRA weights.
+            Essentially, they allow the model to selectively activate or suppress specific columns within each LoRA, 
+            promoting orthogonality and reducing interference.
+          </p>
+          <p style="font-size: 120%;">
+            To promote compatibility between the subject and style LoRAs, we also leverage the insight from ZipLoRA 
+            that highly aligned LoRA columns merge poorly, and apply orthogonal loss L<sub>&perp;</sub> between each column masks.
+          </p>
+          <img src="./static/images/intensity_map.png" style="width:120%;">
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <!-- <div class="column">
+        <h2 class="title is-4">Block-level Separation</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p style="font-size: 120%;">
+              we take advantage of the analysis by the authors of B-LoRA that certain blocks in the SDXL U-Net are more responsible 
+              for content or style. For blocks known as style-sensitive, we release the column sparsity constraint for the style LoRA,i.e.,
+              all the columns are fully trained. The same strategy is applied to the content-LoRA.
+            </p>
+            <img src="./static/images/suppl_block_sep.jpg" style="width:120%;">
+          </div>
+
+        </div>
+      </div> -->
+      <!-- </div> -->
+      <!--/ Matting. -->
+    <!-- </div> -->
+
+    <!-- Animation. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+
+          <!-- Re-rendering. -->
+          <h3 class="title is-4 has-text-centered">Subject and Style Generation and Recontextualization</h3>
+          <div class="content has-text-justified">
+            <p style="font-size: 120%;">
+              <span class="dnerf">UnZipLoRA</span> decomposes style and subject from input image, effectively disentabling and 
+              preserving concepts and achieve superior subject, style fidelity.
+              <br>
+              <br>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <img src="./static/images/main_compare/main_compare1.jpg" alt="Teaser Image" loading="lazy">
+        </div>
+        <div class="item">
+          <img src="./static/images/main_compare/main_compare2.jpg" alt="Teaser Image" loading="lazy">
+        </div>
+        <div class="item">
+          <img src="./static/images/main_compare/main_compare3.jpg" alt="Teaser Image" loading="lazy">
+        </div>
+        <div class="item">
+          <img src="./static/images/main_compare/main_compare4.jpg" alt="Teaser Image" loading="lazy"> 
+        </div>
+        <div class="item">
+          <img src="./static/images/main_compare/main_compare5.jpg" alt="Teaser Image" loading="lazy">
+        </div>
+        <div class="item">
+          <img src="./static/images/main_compare/main_compare6.jpg" alt="Teaser Image" loading="lazy">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_compare/suppl_compare1.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_compare/suppl_compare2.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_compare/suppl_compare3.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_compare/suppl_compare4.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_compare/suppl_compare5.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_compare/suppl_compare6.jpg" alt="Teaser Image">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>  
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <!-- Re-rendering. -->
+        <h3 class="title is-4">Subject-Style Recontextualization</h3>
+        <div class="content has-text-justified">
+          <p style="font-size: 120%;">
+            Using <span class="dnerf">UnZipLoRA</span> can recontextualize subject and style in input images in flexible contexts.
+          </p>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Try to make the slider less wider -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <img src="./static/images/main_recontext/main_recontext1.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/main_recontext/main_recontext2.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/main_recontext/main_recontext3.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/main_recontext/main_recontext4.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/main_recontext/main_recontext5.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/main_recontext/main_recontext6.jpg" alt="Teaser Image">
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <img src="./static/images/suppl_recontext/suppl_recontext1.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_recontext/suppl_recontext2.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_recontext/suppl_recontext3.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_recontext/suppl_recontext4.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_recontext/suppl_recontext5.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_recontext/suppl_recontext6.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_recontext/suppl_recontext7.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_recontext/suppl_recontext8.jpg" alt="Teaser Image">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_recontext/suppl_recontext9.jpg" alt="Teaser Image">
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
 
 
-.teaser .hero-body {
-  padding-top: 0;
-  padding-bottom: 0.2rem;
-}
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
-.teaser {
-  font-family: 'Google Sans', sans-serif;
-}
-
-
-.publication-title {
-}
-
-.publication-banner {
-  max-height: parent;
-
-}
-
-.publication-banner video {
-  position: relative;
-  left: auto;
-  top: auto;
-  transform: none;
-  object-fit: fit;
-}
-
-.publication-header .hero-body {
-}
-
-.publication-title {
-    font-family: 'Google Sans', sans-serif;
-}
-
-.publication-authors {
-    font-family: 'Google Sans', sans-serif;
-}
-
-.publication-venue {
-    color: #555;
-    width: fit-content;
-    font-weight: bold;
-}
-
-.publication-awards {
-    color: #ff3860;
-    width: fit-content;
-    font-weight: bolder;
-}
-
-.publication-authors {
-}
-
-.publication-authors a {
-   color: hsl(204, 86%, 53%) !important;
-}
-
-.publication-authors a:hover {
-    text-decoration: underline;
-}
-
-.author-block {
-  display: inline-block;
-}
-
-.publication-banner img {
-}
-
-.publication-authors {
-  /*color: #4286f4;*/
-}
-
-.publication-video {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%;
-
-    overflow: hidden;
-    border-radius: 10px !important;
-}
-
-.publication-video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.publication-body img {
-}
-
-.results-carousel {
-  display: flex; /* Use flexbox to align items horizontally */
-  overflow: hidden; /* Hide overflow */
-  scroll-snap-type: x mandatory; /* Snap to each item */
-}
-.results-carousel .item {
-  flex: 0 0 100%; /* Make each item take up 100% of the carousel width */
-  max-width: 100%; /* Prevent items from exceeding the width */
-  margin: 0 auto; /* Center the content */
-  overflow: hidden;
-  border: 1px solid #bbb;
-  border-radius: 10px;
-}
-.results-carousel img {
-  width: 120%; /* Make the image responsive */
-  height: auto;
-}
-.results-carousel video {
-  margin: 0;
-}
-
-
-.interpolation-panel {
-  background: #f5f5f5;
-  border-radius: 10px;
-}
-
-.interpolation-panel .interpolation-image {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.interpolation-video-column {
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-#interpolation-image-wrapper {
-  width: 100%;
-}
-#interpolation-image-wrapper img {
-  border-radius: 5px;
-}
+</body>
+</html>
