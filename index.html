@@ -107,14 +107,14 @@
             <span class="author-block">UIUC</span>
           </div>
 
-          <div class="is-size-5 publication-authors">
+          <!-- <div class="is-size-5 publication-authors">
             <span class="author-block">Arxiv 11/2024</span>
-          </div>
+          </div> -->
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://arxiv.org/pdf/2011.12948"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -122,7 +122,7 @@
                   </span>
                   <span>Paper</span>
                 </a>
-              </span>
+              </span> -->
               <span class="link-block">
                 <a href="https://arxiv.org/abs/2011.12948"
                    class="external-link button is-normal is-rounded is-dark">
@@ -143,15 +143,15 @@
                 </a>
               </span> -->
               <!-- Code Link. -->
-<!--               <span class="link-block">
+              <span class="link-block">
                 <a href="https://github.com/google/nerfies"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code</span>
+                  <span>Code (coming Soon!)</span>
                   </a>
-              </span> -->
+              </span>
               <!-- Dataset Link. -->
 <!--               <span class="link-block">
                 <a href="https://github.com/google/nerfies/releases/tag/0.1"
@@ -174,8 +174,9 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <img src="./static/images/teaser.png" class="teaser-image" style="width:120%;" alt="Teaser Image">
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">UnZipLoRA</span>: decomposes any image into its content and style!
+      <h2 class="subtitle has-text-centered" style="font-size: 150%; font-weight: bold; line-height: 1.2;">
+        <!-- <br> -->
+        <em> <span class="dnerf">UnZipLoRA</span> decomposes any image into its content and style! </em>
       </h2>
     </div>
   </div>
@@ -205,26 +206,34 @@
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
+  </div>
+</section>
 
-    <!-- Paper video. -->
-    <!-- <div class="columns is-centered has-text-centered">
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <h2 class="title is-3">Approach</h2>
+        <div class="content has-text-justified">
+          <p style="font-size: 120%;">
+            <span class="dnerf">UnZipLoRA</span> decouples content and style from single input image by learning
+            two distinct LoRAs simultaneously. It relies on three key components to ensure accurate disentanglement: 
+            <b>prompt-level separation</b>, <b>column-level separation</b>, and <b>block-level separation</b>.
+          </p>
+          <br>
+          <img src="./static/images/overview.png" style="width:100%;">
         </div>
+
       </div>
-    </div> -->
-    <!--/ Paper video. -->
+    </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container is-max-desktop">
 
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Approach</h2>
         <p style="font-size: 120%;">
@@ -253,7 +262,7 @@
         </p>
         <img src="./static/images/overview.png" style="width:100%;">
       </div>
-    </div>
+    </div> -->
       <!-- Visual Effects. -->
     <!-- <div class="columns is-centered">
       <div class="column">
@@ -293,17 +302,21 @@
     <!-- </div> -->
 
     <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
         <h2 class="title is-3">Results</h2>
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Subject and Style Generation and Recontextualization</h3>
         <div class="content has-text-justified">
-          <p style="font-size: 120%;">
-            <span class="dnerf">UnZipLoRA</span> decomposes style and subject from input image, effectively disentabling and 
-            preserving concepts and achieve superior subject, style fidelity.
-          </p>
+
+          <!-- Re-rendering. -->
+          <h3 class="title is-4 has-text-centered">Subject and Style Generation and Recontextualization</h3>
+          <div class="content has-text-justified">
+            <p style="font-size: 120%;">
+              <span class="dnerf">UnZipLoRA</span> decomposes style and subject from input image, effectively disentabling and 
+              preserving concepts and achieve superior subject, style fidelity.
+              <br>
+              <br>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -355,20 +368,21 @@
 </section>  
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
         <!-- Re-rendering. -->
         <h3 class="title is-4">Subject-Style Recontextualization</h3>
         <div class="content has-text-justified">
           <p style="font-size: 120%;">
             Using <span class="dnerf">UnZipLoRA</span> can recontextualize subject and style in input images in flexible contexts.
           </p>
+          <br>
         </div>
       </div>
     </div>
   </div>
 </div>
-
+<!-- Try to make the slider less wider -->
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
