@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-    max-width: 1300px;
+    max-width: 1100px;
 }
 
 .dnerf {
@@ -115,16 +115,50 @@ body {
 }
 
 .results-carousel {
+  display: flex; /* Use flexbox to align items horizontally */
+  overflow: hidden; /* Hide overflow */
+  justify-content: center;
+  align-items: center;
+  scroll-snap-type: x mandatory; /* Snap to each item */
+  margin: 0 auto; /* Center the carousel */
+  width: auto; /* Allow dynamic resizing */
+  max-width: 80%; /* Cap the maximum width */
+  padding: 5px 0; /* Reduce padding */
+}
+
+.carousel {
   overflow: hidden;
+  width: 100%; /* Ensure the carousel spans the full frame width */
+}
+
+.carousel .item {
+  flex: 1 1 auto; /* Items take flexible width */
+  margin: 0 auto;
 }
 
 .results-carousel .item {
-  margin: 5px;
+  /* flex: 0 0 100%; Make each item take up 100% of the carousel width */
+  max-width: 100%; /* Prevent items from exceeding the frame */
+  margin: 0 auto;
   overflow: hidden;
   border: 1px solid #bbb;
   border-radius: 10px;
+}
+
+.results-carousel img {
+  display: block;
+  margin: auto; /* Center images */
+  width: 80%; /* Shrink images */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.content {
+  margin: 0;
   padding: 0;
-  font-size: 0;
+}
+
+.content.has-text-centered {
+  text-align: center;
 }
 
 .results-carousel video {
