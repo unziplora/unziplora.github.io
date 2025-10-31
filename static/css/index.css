@@ -42,6 +42,8 @@ body {
 
 .publication-banner video {
   position: relative;
+  max-width: 800px;
+  margin: auto;
   left: auto;
   top: auto;
   transform: none;
@@ -193,3 +195,4 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
